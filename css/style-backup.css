@@ -1,0 +1,136 @@
+/* Configuração geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Imagem de fundo da loja */
+body {
+    min-height: 100vh;
+    background-image: url("../img/fundo-viih-store.png.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+/* Painel principal */
+.painel {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 80vh;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(120, 40, 90, 0.15);
+}
+
+/* Cabeçalho */
+.cabecalho {
+    text-align: center;
+    color: #762b59;
+    margin-bottom: 35px;
+}
+
+.cabecalho h1 {
+    font-size: 32px;
+}
+
+.cabecalho p {
+    font-size: 18px;
+}
+
+/* Conteúdo */
+.conteudo {
+    color: #64264f;
+    text-align: center;
+}
+/* Boas-vindas na parte inferior */
+.boas-vindas {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    color: #8b1458;
+}
+
+.boas-vindas h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.boas-vindas p {
+    font-size: 18px;
+}
+/* CENTRALIZAÇÃO DA TELA DE LOGIN */
+
+.login-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    box-sizing: border-box;
+    transform: translateY(60px);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(120, 40, 90, 0.20);
+    text-align: center;
+}
+
+#formLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+#formLogin input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d9a3bd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+#btnEntrar {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #d63384;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btnEntrar:hover {
+    background: #b8236d;
+}
+
+.esqueci-senha {
+    text-align: right;
+    margin: 5px 0;
+}
+
+.rodape-login {
+    margin-top: 20px;
+    text-align: center;
+}

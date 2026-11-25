@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VIIH-STORE - Painel Administrativo</title>
+
+    <link rel="stylesheet" href="css/painel.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h1>VIIH-STORE</h1>
+                <p>Moda Feminina</p>
+            </div>
+
+            <nav class="menu">
+    <a href="#" class="ativo" data-pagina="painel">🏠 Painel</a>
+    <a href="#" data-pagina="produtos">📦 Produtos</a>
+    <a href="#" data-pagina="estoque">🏬 Estoque</a>
+    <a href="#" data-pagina="vendas">🛒 Vendas</a>
+    <a href="#" data-pagina="clientes">👥 Clientes</a>
+    <a href="#" data-pagina="financeiro">💰 Financeiro</a>
+    <a href="#" data-pagina="relatorios">📊 Relatórios</a>
+    <a href="#" data-pagina="configuracoes">⚙️ Configurações</a>
+</nav>
+
+            <button class="btn-sair">↪️ Sair</button>
+
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo" id="conteudo-principal">
+
+            <header class="topo">
+                <div>
+                    <h2>Bem-vinda ao VIIH-STORE!</h2>
+                    <p>Gerencie sua loja em um só lugar.</p>
+                </div>
+            </header>
+
+            <!-- INDICADORES -->
+            <section class="indicadores">
+
+                <div class="card">
+                    <h3>Vendas Hoje</h3>
+                    <strong>R$ 0,00</strong>
+                </div>
+
+                <div class="card">
+                    <h3>Vendas no Mês</h3>
+                    <strong>R$ 0,00</strong>
+                </div>
+
+                <div class="card">
+                    <h3>Produtos Cadastrados</h3>
+                    <strong>0</strong>
+                </div>
+
+                <div class="card">
+                    <h3>Estoque Baixo</h3>
+                    <strong>0 itens</strong>
+                </div>
+
+            </section>
+
+            <!-- ÁREA DE INFORMAÇÕES -->
+            <section class="area-informacoes">
+
+                <div class="bloco">
+                    <h3>📈 Vendas nos Últimos 7 Dias</h3>
+                    <div class="grafico">
+                        Gráfico de vendas
+                    </div>
+                </div>
+
+                <div class="bloco">
+                    <h3>🏆 Produtos Mais Vendidos</h3>
+                    <p>Nenhuma venda registrada.</p>
+                </div>
+
+            </section>
+
+            <!-- ÚLTIMAS VENDAS -->
+            <section class="bloco">
+                <h3>🛍️ Últimas Vendas</h3>
+
+                <p>Nenhuma venda registrada até o momento.</p>
+            </section>
+
+            <!-- ALERTA DE ESTOQUE -->
+            <section class="bloco">
+                <h3>⚠️ Alerta de Estoque Baixo</h3>
+
+                <p>Nenhum alerta no momento.</p>
+            </section>
+
+        </main>
+
+    </div>
+<script type="module" src="painel.js"></script>
+</body>
+</html>

@@ -1,0 +1,866 @@
+/* ==========================================
+   VIIH - STORE | IDENTIDADE VISUAL PROFISSIONAL
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --cor-principal: #782D43;
+    --cor-principal-hover: #612236;
+    --cor-fundo: #F5F6F8;
+    --cor-branco: #FFFFFF;
+    --cor-texto: #343A40;
+    --cor-secundaria: #6B7280;
+    --cor-borda: #E5E7EB;
+    --cor-suave: #F5F2EF;
+    --cor-sucesso: #16845B;
+    --cor-alerta: #B7791F;
+    --sombra: 0 2px 10px rgba(30, 41, 59, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    transition: 0.2s ease;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENU LATERAL */
+
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: var(--cor-branco);
+    color: var(--cor-texto);
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid var(--cor-borda);
+}
+
+.logo {
+    text-align: center;
+    padding: 15px 5px 25px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.logo h1 {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--cor-texto);
+}
+
+.logo p {
+    font-size: 12px;
+    margin-top: 5px;
+    color: var(--cor-secundaria);
+    font-style: normal;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--cor-texto);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.menu a:hover,
+.menu a.ativo {
+    background: var(--cor-suave);
+    color: var(--cor-principal);
+}
+
+.btn-sair {
+    margin-top: auto;
+    padding: 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    background: var(--cor-branco);
+    color: var(--cor-texto);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-sair:hover {
+    background: var(--cor-suave);
+    color: var(--cor-principal);
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.topo {
+    background: var(--cor-branco);
+    padding: 25px 28px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    margin-bottom: 24px;
+}
+
+.topo h2 {
+    color: var(--cor-texto);
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.topo p {
+    color: var(--cor-secundaria);
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+/* INDICADORES */
+
+.indicadores {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: var(--cor-branco);
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra);
+}
+
+.card h3 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cor-secundaria);
+    margin-bottom: 12px;
+}
+
+.card strong {
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--cor-principal);
+}
+
+/* ÁREAS DE INFORMAÇÕES */
+
+.area-informacoes {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.bloco {
+    background: var(--cor-branco);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    min-width: 0;
+}
+
+.bloco h3 {
+    color: var(--cor-texto);
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bloco p {
+    color: var(--cor-secundaria);
+}
+
+.grafico {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F8F9FB;
+    border-radius: 10px;
+    color: var(--cor-principal);
+}
+
+/* FORMULÁRIOS */
+
+.bloco form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bloco form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cor-texto);
+    margin-bottom: -9px;
+}
+
+.bloco form input,
+.bloco form select,
+.bloco form textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 13px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: var(--cor-texto);
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.bloco form input:focus,
+.bloco form select:focus,
+.bloco form textarea:focus {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 3px rgba(120, 45, 67, 0.08);
+}
+
+.bloco form input::placeholder,
+.bloco form textarea::placeholder {
+    color: #9CA3AF;
+}
+
+.bloco form button {
+    min-height: 44px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--cor-principal);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bloco form button:hover {
+    background: var(--cor-principal-hover);
+}
+
+.bloco form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* FORMULÁRIO DE VENDAS */
+
+#form-venda {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 600px;
+}
+
+#form-venda label {
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+#total-venda {
+    margin-top: 10px;
+    color: var(--cor-principal);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+/* ESTOQUE ATUAL */
+
+#lista-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#lista-estoque p {
+    padding: 14px 16px;
+    margin: 0;
+    background: #F8F9FB;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    color: var(--cor-texto);
+    font-size: 13px;
+}
+
+/* HISTÓRICO DE ESTOQUE */
+
+#historico-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#historico-estoque p {
+    padding: 16px;
+    margin: 0;
+    background: #FFFFFF;
+    border: 1px solid var(--cor-borda);
+    border-left: 3px solid var(--cor-principal);
+    border-radius: 8px;
+    color: var(--cor-texto);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* LISTAGENS */
+
+#lista-produtos,
+#lista-clientes,
+#historico-vendas,
+#historico-financeiro,
+#lista-relatorios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-lista {
+    background: #FFFFFF;
+    border: 1px solid var(--cor-borda);
+    border-radius: 9px;
+    padding: 16px;
+    margin-bottom: 0;
+    color: var(--cor-texto);
+    line-height: 1.8;
+}
+
+.item-lista strong {
+    color: var(--cor-texto);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.item-lista p {
+    color: var(--cor-secundaria);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.item-lista button {
+    margin-top: 12px;
+    padding: 9px 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 7px;
+    background: #FFFFFF;
+    color: var(--cor-principal);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.item-lista button:hover {
+    background: var(--cor-suave);
+}
+
+/* RESUMOS FINANCEIROS E RELATÓRIOS */
+
+#resumo-financeiro,
+#resumo-relatorios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#resumo-financeiro p,
+#resumo-relatorios p {
+    padding: 12px 14px;
+    background: #F8F9FB;
+    border-radius: 8px;
+    color: var(--cor-secundaria);
+}
+
+#resumo-financeiro strong,
+#resumo-relatorios strong {
+    color: var(--cor-principal);
+    font-weight: 600;
+}
+
+/* AÇÕES RÁPIDAS */
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.acoes button {
+    flex: 1 1 150px;
+    padding: 13px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: var(--cor-texto);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.acoes button:hover {
+    background: var(--cor-suave);
+    color: var(--cor-principal);
+}
+
+/* CONFIGURAÇÕES */
+
+#form-configuracoes {
+    max-width: 600px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1000px) {
+    .indicadores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .area-informacoes {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .logo {
+        padding: 10px 5px 15px;
+    }
+
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 15px;
+    }
+
+    .menu a {
+        font-size: 13px;
+        padding: 11px 8px;
+    }
+
+    .btn-sair {
+        margin-top: 15px;
+    }
+
+    .conteudo {
+        padding: 15px;
+    }
+
+    .topo {
+        padding: 19px;
+    }
+
+    .topo h2 {
+        font-size: 20px;
+    }
+
+    .indicadores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card strong {
+        font-size: 19px;
+    }
+
+    .bloco {
+        padding: 17px;
+    }
+
+    .bloco h3 {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 380px) {
+    .indicadores {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   VIIH-STORE - REFINAMENTO DO ESTOQUE
+========================================= */
+
+/* FORMULÁRIO DE MOVIMENTAÇÃO */
+
+#form-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+#form-estoque input,
+#form-estoque select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 15px;
+    border: 1px solid #e1e4e8;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #343a40;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+#form-estoque input:focus,
+#form-estoque select:focus {
+    border-color: #782D43;
+    box-shadow: 0 0 0 3px rgba(120, 45, 67, 0.10);
+}
+
+#form-estoque button {
+    min-height: 48px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 9px;
+    background: #782D43;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#form-estoque button:hover {
+    background: #572033;
+}
+
+/* ESTOQUE ATUAL */
+
+#lista-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+#lista-estoque p {
+    padding: 16px 18px;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #782D43;
+    border-radius: 9px;
+    color: #343a40;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* HISTÓRICO DE MOVIMENTAÇÕES */
+
+#historico-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+#historico-estoque p {
+    margin: 0;
+    padding: 16px 18px;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #782D43;
+    border-radius: 9px;
+    color: #495057;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* AJUSTES PARA CELULARES */
+
+@media (max-width: 650px) {
+    #form-estoque input,
+    #form-estoque select,
+    #form-estoque button {
+        font-size: 14px;
+    }
+
+    #lista-estoque p,
+    #historico-estoque p {
+        padding: 13px;
+    }
+}
+
+/* =========================================
+   VIIH-STORE - VERSÃO MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    /* EVITAR ROLAGEM HORIZONTAL */
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* MENU MOBILE */
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .logo {
+        padding: 10px 5px 14px;
+    }
+
+    .logo h1 {
+        font-size: 21px;
+    }
+
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .menu a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 44px;
+        padding: 10px;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    .btn-sair {
+        min-height: 44px;
+        margin-top: 12px;
+    }
+
+    /* CONTEÚDO */
+    .conteudo {
+        width: 100%;
+        min-width: 0;
+        padding: 14px;
+    }
+
+    .topo {
+        padding: 18px;
+        margin-bottom: 16px;
+    }
+
+    .topo h2 {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .topo p {
+        font-size: 13px;
+    }
+
+    /* INDICADORES */
+    .indicadores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .card {
+        min-width: 0;
+        padding: 14px;
+    }
+
+    .card h3 {
+        font-size: 12px;
+    }
+
+    .card strong {
+        font-size: 18px;
+        overflow-wrap: anywhere;
+    }
+
+    /* ÁREAS E CARTÕES */
+    .area-informacoes {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .bloco {
+        width: 100%;
+        min-width: 0;
+        padding: 16px;
+        margin-bottom: 14px;
+    }
+
+    .bloco h3 {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .grafico {
+        min-height: 180px;
+        width: 100%;
+    }
+
+    /* FORMULÁRIOS */
+    .bloco form {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .bloco form input,
+    .bloco form select,
+    .bloco form textarea {
+        width: 100%;
+        min-width: 0;
+        min-height: 46px;
+        font-size: 16px;
+    }
+
+    .bloco form button {
+        width: 100%;
+        min-height: 46px;
+        font-size: 15px;
+    }
+
+    /* LISTAGENS E HISTÓRICOS */
+    #lista-produtos,
+    #lista-clientes,
+    #historico-vendas,
+    #historico-financeiro,
+    #lista-relatorios,
+    #lista-estoque,
+    #historico-estoque {
+        width: 100%;
+        min-width: 0;
+        gap: 10px;
+    }
+
+    .item-lista,
+    #lista-estoque p,
+    #historico-estoque p {
+        width: 100%;
+        min-width: 0;
+        padding: 13px;
+        overflow-wrap: anywhere;
+        font-size: 13px;
+    }
+
+    .item-lista button {
+        min-height: 42px;
+        padding: 10px 14px;
+    }
+
+    /* RESUMOS */
+    #resumo-financeiro p,
+    #resumo-relatorios p {
+        overflow-wrap: anywhere;
+    }
+
+    /* BOTÕES */
+    button {
+        min-height: 42px;
+        touch-action: manipulation;
+    }
+}
+
+/* CELULARES MUITO PEQUENOS */
+
+@media (max-width: 380px) {
+
+    .conteudo {
+        padding: 10px;
+    }
+
+    .sidebar {
+        padding: 10px;
+    }
+
+    .menu {
+        gap: 6px;
+    }
+
+    .menu a {
+        padding: 9px 7px;
+        font-size: 12px;
+    }
+
+    .card {
+        padding: 11px;
+    }
+
+    .card h3 {
+        font-size: 11px;
+    }
+
+    .card strong {
+        font-size: 16px;
+    }
+
+    .bloco {
+        padding: 13px;
+    }
+}
