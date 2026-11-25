@@ -57,13 +57,16 @@ async function listarProdutos() {
         return;
     }
 
-    data.forEach(produto => {
+   data.forEach(produto => {
         const item = document.createElement("div");
+        item.className = "item-lista";
 
         item.textContent = produto.nome +
             " | Código: " + (produto.codigo || "-") +
-            " | Quantidade: " + produto.quantidade +
-            " | Preço: R$ " + produto.preco;
+            " | Tamanho: " + (produto.tamanho || "-") +
+            " | Cor: " + (produto.cor || "-") +
+            " | Estoque: " + produto.quantidade +
+            " | Preço: R$ " + Number(produto.preco).toFixed(2);
 
         lista.appendChild(item);
     });
@@ -129,7 +132,8 @@ if (pagina === "produtos") {
 
             <form id="form-produto">
 
-    <input type="text" id="nome" placeholder="Nome do produto" required>
+                <input type="text" id="nome" placeholder="Nome do produto" required>
+
                 <input type="text" id="codigo" placeholder="Código">
 
                 <input type="text" id="categoria" placeholder="Categoria">
@@ -138,9 +142,30 @@ if (pagina === "produtos") {
 
                 <input type="text" id="modelo" placeholder="Modelo">
 
-                <input type="number" id="quantidade" placeholder="Quantidade">
+                <select id="tamanho" required>
+                    <option value="">Selecione o tamanho</option>
+                    <option value="PP">PP</option>
+                    <option value="P">P</option>
+                    <option value="M">M</option>
+                    <option value="G">G</option>
+                    <option value="GG">GG</option>
+                    <option value="XG">XG</option>
+                    <option value="U">Tamanho Único</option>
+                </select>
 
-                <input type="number" id="preco" placeholder="Preço de venda" step="0.01">
+                <input type="text" id="cor" placeholder="Cor">
+
+                <input type="number" id="quantidade" placeholder="Quantidade em estoque" min="0" required>
+
+                <input type="number" id="estoque_minimo" placeholder="Estoque mínimo (alerta)" min="0">
+
+                <input type="number" id="preco_custo" placeholder="Preço de custo (R$)" step="0.01" min="0">
+
+                <input type="number" id="preco" placeholder="Preço de venda (R$)" step="0.01" min="0" required>
+
+                <input type="url" id="imagem" placeholder="Link da imagem (URL)">
+
+                <textarea id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
 
                 <button type="submit">Salvar Produto</button>
 
@@ -154,46 +179,54 @@ if (pagina === "produtos") {
             </div>
         </section>
     `;
-const formulario = document.getElementById("form-produto");
 
-formulario.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    const formulario = document.getElementById("form-produto");
 
-    const { data: usuario, error: erroUsuario } =
-        await supabaseClient.auth.getUser();
+    formulario.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    if (erroUsuario || !usuario.user) {
-        alert("Faça login novamente.");
-        return;
-    }
+        const { data: usuario, error: erroUsuario } =
+            await supabaseClient.auth.getUser();
 
-    const novoProduto = {
-        nome: document.getElementById("nome").value.trim(),
-        codigo: document.getElementById("codigo").value.trim(),
-        categoria: document.getElementById("categoria").value.trim(),
-        marca: document.getElementById("marca").value.trim(),
-        modelo: document.getElementById("modelo").value.trim(),
-        quantidade: Number(document.getElementById("quantidade").value),
-        preco: Number(document.getElementById("preco").value),
-        user_id: usuario.user.id
-    };
+        if (erroUsuario || !usuario.user) {
+            alert("Faça login novamente.");
+            return;
+        }
 
-    const { error } = await supabaseClient
-        .from("produtos")
-        .insert(novoProduto);
+        const novoProduto = {
+            nome: document.getElementById("nome").value.trim(),
+            codigo: document.getElementById("codigo").value.trim(),
+            categoria: document.getElementById("categoria").value.trim(),
+            marca: document.getElementById("marca").value.trim(),
+            modelo: document.getElementById("modelo").value.trim(),
+            tamanho: document.getElementById("tamanho").value,
+            cor: document.getElementById("cor").value.trim(),
+            quantidade: Number(document.getElementById("quantidade").value),
+            estoque_minimo: Number(document.getElementById("estoque_minimo").value || 0),
+            preco_custo: Number(document.getElementById("preco_custo").value || 0),
+            preco: Number(document.getElementById("preco").value),
+            imagem: document.getElementById("imagem").value.trim(),
+            descricao: document.getElementById("descricao").value.trim(),
+            user_id: usuario.user.id
+        };
 
-    if (error) {
-        console.error("Erro ao salvar produto:", error);
-        alert("Erro ao salvar: " + error.message);
-        return;
-    }
+        const { error } = await supabaseClient
+            .from("produtos")
+            .insert(novoProduto);
 
-    alert("Produto cadastrado com sucesso!");
+        if (error) {
+            console.error("Erro ao salvar produto:", error);
+            alert("Erro ao salvar: " + error.message);
+            return;
+        }
 
-    formulario.reset();
+        alert("Produto cadastrado com sucesso!");
 
-    await listarProdutos();
-});
+        formulario.reset();
+
+        await listarProdutos();
+    });
+
     listarProdutos();
     return;
 }
