@@ -23,6 +23,7 @@ async function protegerPainel() {
 
     console.log("Painel autorizado:", data.session.user.email);
 }
+let produtoEmEdicao = null;
 // FUNÇÃO PARA LISTAR PRODUTOS
 async function listarProdutos() {
     const lista = document.getElementById("lista-produtos");
@@ -67,11 +68,102 @@ async function listarProdutos() {
             " | Cor: " + (produto.cor || "-") +
             " | Estoque: " + produto.quantidade +
             " | Preço: R$ " + Number(produto.preco).toFixed(2);
+const btnEditar = document.createElement("button");
+btnEditar.textContent = "Editar";
+btnEditar.type = "button";
+btnEditar.style.backgroundColor = "#2563eb";
+btnEditar.style.color = "#ffffff";
+btnEditar.style.marginLeft = "10px";
+btnEditar.addEventListener("click", () => {
+    editarProduto(produto);
+});
 
+const btnExcluir = document.createElement("button");
+btnExcluir.textContent = "Excluir";
+btnExcluir.type = "button";
+btnExcluir.style.backgroundColor = "#dc2626";
+btnExcluir.style.color = "#ffffff";
+btnExcluir.style.marginLeft = "10px";
+btnExcluir.addEventListener("click", () => {
+    excluirProduto(produto);
+});
+
+item.appendChild(btnEditar);
+item.appendChild(btnExcluir);
         lista.appendChild(item);
     });
 }
+// FUNÇÃO PARA EXCLUIR PRODUTOS
 
+async function excluirProduto(produto) {
+
+    const confirmar = confirm(
+        "Deseja realmente excluir o produto " + produto.nome + "?"
+    );
+
+    if (!confirmar) return;
+
+    const { data: { user } } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        alert("Faça login novamente.");
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("produtos")
+        .delete()
+        .eq("id", produto.id)
+        .eq("user_id", user.id)
+        .select("id");
+
+    if (error) {
+        if (error.code === "23503") {
+            alert("Este produto possui histórico de vendas ou movimentações de estoque e não pode ser excluído.");
+        } else {
+            alert("Erro ao excluir: " + error.message);
+        }
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        alert("Não foi possível excluir o produto. Verifique as permissões.");
+        return;
+    }
+
+    if (produtoEmEdicao === produto.id) {
+        document.getElementById("cancelar-edicao").click();
+    }
+
+    alert("Produto excluído com sucesso!");
+
+    await listarProdutos();
+    }
+
+// FUNÇÃO PARA EDITAR PRODUTOS
+function editarProduto(produto) {
+    produtoEmEdicao = produto.id;
+
+    document.getElementById("nome").value = produto.nome || "";
+    document.getElementById("codigo").value = produto.codigo || "";
+    document.getElementById("categoria").value = produto.categoria || "";
+    document.getElementById("marca").value = produto.marca || "";
+    document.getElementById("modelo").value = produto.modelo || "";
+    document.getElementById("tamanho").value = produto.tamanho || "";
+    document.getElementById("cor").value = produto.cor || "";
+   document.getElementById("quantidade").value = produto.quantidade ?? 0;
+document.getElementById("quantidade").readOnly = true;
+document.getElementById("estoque_minimo").value = produto.estoque_minimo ?? 0;
+    document.getElementById("preco_custo").value = produto.preco_custo ?? 0;
+    document.getElementById("preco").value = produto.preco ?? 0;
+    document.getElementById("descricao").value = produto.descricao || "";
+
+    const formulario = document.getElementById("form-produto");
+
+    formulario.querySelector('button[type="submit"]').textContent = "Salvar Alterações";
+document.getElementById("cancelar-edicao").hidden = false;
+    formulario.scrollIntoView({ behavior: "smooth" });
+}
 protegerPainel();
 // Função para sair do sistema
 document.querySelector(".btn-sair").addEventListener("click", async () => {
@@ -120,7 +212,8 @@ document.querySelectorAll(".menu a[data-pagina]").forEach(link => {
             conteudoPrincipal.innerHTML = painelOriginal;
             return;
         }
-if (pagina === "produtos") {
+if (pagina === "produtos"){
+produtoEmEdicao = null;
     conteudoPrincipal.innerHTML = `
         <header class="topo">
             <h2>Cadastro de Produtos</h2>
@@ -167,6 +260,10 @@ if (pagina === "produtos") {
 
                 <button type="submit">Salvar Produto</button>
 
+<button type="button" id="cancelar-edicao" hidden>
+    Cancelar edição
+</button>
+
             </form>
         </section>
 
@@ -178,11 +275,18 @@ if (pagina === "produtos") {
         </section>
     `;
 
-    const formulario = document.getElementById("form-produto");
+  const formulario = document.getElementById("form-produto");
 
-    formulario.addEventListener("submit", async (event) => {
-        event.preventDefault();
+document.getElementById("cancelar-edicao").addEventListener("click", () => {
+    produtoEmEdicao = null;
+    formulario.reset();
+    document.getElementById("quantidade").readOnly = false;
+    formulario.querySelector('button[type="submit"]').textContent = "Salvar Produto";
+    document.getElementById("cancelar-edicao").hidden = true;
+});
 
+formulario.addEventListener("submit", async (event) => {
+    event.preventDefault();
         const { data: usuario, error: erroUsuario } =
             await supabaseClient.auth.getUser();
 
@@ -207,21 +311,45 @@ if (pagina === "produtos") {
             user_id: usuario.user.id
         };
 
-        const { error } = await supabaseClient
-            .from("produtos")
-            .insert(novoProduto);
+      let error;
 
+if (produtoEmEdicao !== null) {
+    delete novoProduto.quantidade;
+    const resultado = await supabaseClient
+        .from("produtos")
+        .update(novoProduto)
+        .eq("id", produtoEmEdicao)
+        .eq("user_id", usuario.user.id);
+
+    error = resultado.error;
+} else {
+    const resultado = await supabaseClient
+        .from("produtos")
+        .insert(novoProduto);
+
+    error = resultado.error;
+}
         if (error) {
             console.error("Erro ao salvar produto:", error);
             alert("Erro ao salvar: " + error.message);
             return;
         }
 
-        alert("Produto cadastrado com sucesso!");
+       if (produtoEmEdicao !== null) {
+    alert("Produto atualizado com sucesso!");
+} else {
+    alert("Produto cadastrado com sucesso!");
+}
 
-        formulario.reset();
+produtoEmEdicao = null;
 
-        await listarProdutos();
+formulario.reset();
+
+document.getElementById("quantidade").readOnly = false;
+formulario.querySelector('button[type="submit"]').textContent = "Salvar Produto";
+document.getElementById("cancelar-edicao").hidden = true;
+
+await listarProdutos();
     });
 
     listarProdutos();
