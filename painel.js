@@ -1337,6 +1337,18 @@ if (pagina === "configuracoes") {
                 <button type="submit">Salvar configurações</button>
             </form>
         </section>
+
+<section class="bloco">
+  <h3>Segurança e Usuários</h3>
+  <p>Gerencie a segurança e os acessos ao sistema.</p>
+  <p>Alteração de senha e permissões de usuários serão configuradas aqui.</p>
+</section>
+
+<section class="bloco">
+  <h3>Estoque e Vendas</h3>
+  <p>Configure as regras de estoque e vendas da loja.</p>
+  <p>Estoque mínimo, descontos e formas de pagamento serão configurados aqui.</p>
+</section>
     `;
 
     const configSalvas = JSON.parse(
