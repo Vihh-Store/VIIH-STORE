@@ -203,7 +203,6 @@ if (pagina === "produtos") {
             estoque_minimo: Number(document.getElementById("estoque_minimo").value || 0),
             preco_custo: Number(document.getElementById("preco_custo").value || 0),
             preco: Number(document.getElementById("preco").value),
-            imagem: "",
             descricao: document.getElementById("descricao").value.trim(),
             user_id: usuario.user.id
         };
