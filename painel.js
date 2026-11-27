@@ -163,8 +163,6 @@ if (pagina === "produtos") {
 
                 <input type="number" id="preco" placeholder="Preço de venda (R$)" step="0.01" min="0" required>
 
-                <input type="url" id="imagem" placeholder="Link da imagem (URL)">
-
                 <textarea id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
 
                 <button type="submit">Salvar Produto</button>
@@ -205,7 +203,7 @@ if (pagina === "produtos") {
             estoque_minimo: Number(document.getElementById("estoque_minimo").value || 0),
             preco_custo: Number(document.getElementById("preco_custo").value || 0),
             preco: Number(document.getElementById("preco").value),
-            imagem: document.getElementById("imagem").value.trim(),
+            imagem: "",
             descricao: document.getElementById("descricao").value.trim(),
             user_id: usuario.user.id
         };
